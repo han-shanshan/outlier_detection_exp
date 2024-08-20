@@ -1,0 +1,143 @@
+Metadata-Version: 2.1
+Name: fedml
+Version: 0.8.30
+Summary: A research and production integrated edge-cloud library for federated/distributed machine learning at anywhere at any scale.
+Home-page: https://github.com/FedML-AI/FedML
+Author: FedML Team
+Author-email: ch@fedml.ai
+License: Apache 2.0
+Keywords: distributed machine learning,federated learning,natural language processing,computer vision,Internet of Things
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: GPUtil
+Requires-Dist: PyYAML
+Requires-Dist: aiohttp>=3.8.1
+Requires-Dist: attrdict
+Requires-Dist: attrs
+Requires-Dist: boto3
+Requires-Dist: cachetools
+Requires-Dist: chardet
+Requires-Dist: click
+Requires-Dist: dill
+Requires-Dist: docker==6.1.3
+Requires-Dist: fastapi
+Requires-Dist: gensim
+Requires-Dist: geventhttpclient<=2.0.9,>=1.4.4
+Requires-Dist: graphviz<0.9.0,>=0.8.1
+Requires-Dist: h5py
+Requires-Dist: httpx
+Requires-Dist: matplotlib
+Requires-Dist: multiprocess
+Requires-Dist: networkx<3.0
+Requires-Dist: ntplib
+Requires-Dist: numpy>=1.21
+Requires-Dist: onnx
+Requires-Dist: paho-mqtt<2.0.0
+Requires-Dist: pandas
+Requires-Dist: prettytable
+Requires-Dist: py-machineid
+Requires-Dist: pydantic
+Requires-Dist: pydantic-settings
+Requires-Dist: pytest
+Requires-Dist: pytest-mock
+Requires-Dist: python-rapidjson>=0.9.1
+Requires-Dist: redis
+Requires-Dist: scikit-learn
+Requires-Dist: smart-open==6.3.0
+Requires-Dist: spacy
+Requires-Dist: sqlalchemy
+Requires-Dist: toposort
+Requires-Dist: torch>=1.13.1
+Requires-Dist: torchvision>=0.14.1
+Requires-Dist: tqdm
+Requires-Dist: tritonclient
+Requires-Dist: typing_extensions
+Requires-Dist: tzlocal
+Requires-Dist: uvicorn
+Requires-Dist: wandb==0.13.2
+Requires-Dist: wget
+Provides-Extra: mpi
+Requires-Dist: mpi4py; extra == "mpi"
+Provides-Extra: deepspeed
+Requires-Dist: deepspeed>=0.10.2; extra == "deepspeed"
+Provides-Extra: fhe
+Requires-Dist: tenseal; extra == "fhe"
+Provides-Extra: grpc
+Requires-Dist: grpcio; extra == "grpc"
+Provides-Extra: jax
+Provides-Extra: llm
+Requires-Dist: accelerate>=0.24.0; extra == "llm"
+Requires-Dist: datasets>=2.14.0; extra == "llm"
+Requires-Dist: einops; extra == "llm"
+Requires-Dist: evaluate; extra == "llm"
+Requires-Dist: ninja; extra == "llm"
+Requires-Dist: packaging; extra == "llm"
+Requires-Dist: peft>=0.4.0; extra == "llm"
+Requires-Dist: safetensors; extra == "llm"
+Requires-Dist: sentencepiece; extra == "llm"
+Requires-Dist: transformers[torch]>=4.31.0; extra == "llm"
+Requires-Dist: zstandard; extra == "llm"
+Provides-Extra: mxnet
+Requires-Dist: mxnet==2.0.0b1; extra == "mxnet"
+Provides-Extra: tensorflow
+Requires-Dist: tensorflow; extra == "tensorflow"
+Requires-Dist: tensorflow_datasets; extra == "tensorflow"
+Requires-Dist: tensorflow_federated; extra == "tensorflow"
+
+# FedML - The community building and connecting AI anywhere at any scale
+
+https://doc.fedml.ai
+
+## Mission
+FedML builds simple and versatile APIs for machine learning running anywhere at any scale.
+In other words, FedML supports both federated learning for data silos and distributed training for acceleration with MLOps and Open Source support, covering industrial grade use cases and cutting-edge academia research.
+
+- Distributed Training: Accelerate Model Training with Lightweight Cheetah
+- Simulator: (1) simulate FL using a single process (2) MPI-based FL Simulator (3) NCCL-based FL Simulator (fastest)
+- Cross-silo Federated Learning for cross-organization/account training, including Python-based edge SDK
+- Cross-device Federated Learning for Smartphones and IoTs, including edge SDK for Android/iOS and embedded Linux.
+- Model Serving: we focus on providing a better user experience for edge AI.
+- MLOps: FedML's machine learning operation pipeline for AI running anywhere at any scale.
+
+## Source Code Structure
+
+
+The functionality of each package is as follows:
+
+**core**: The FedML low-level API package. This package implements distributed computing by communication backend like MPI, NCCL, MQTT, gRPC, PyTorch RPC, and also supports topology management. 
+Other low-level APIs related to security and privacy are also supported. All algorithms and Scenarios are built based on the "core" package.
+
+**data**: FedML will provide some default datasets for users to get started. Customization templates are also provided.
+
+**model**: FedML model zoo.
+
+**device**: FedML computing resource management.
+
+**simulation**: FedML parrot can support: (1) simulate FL using a single process (2) MPI-based FL Simulator (3) NCCL-based FL Simulator (fastest)
+
+**cross-silo**: Cross-silo Federated Learning for cross-organization/account training
+
+**cross-device**: Cross-device Federated Learning for Smartphones and IoTs
+
+**distributed**: Distributed Training: Accelerate Model Training with Lightweight Cheetah
+
+**serve**: Model serving, tailored for edge inference
+
+**mlops**: APIs related to machine learning operation platform (open.fedml.ai)
+
+**centralized**: Some centralized trainer code examples for benchmarking purposes.
+
+**utils**: Common utilities shared by other modules.
+
+## About FedML, Inc.
+https://FedML.ai

@@ -2,7 +2,7 @@ import logging
 from abc import ABC, abstractmethod
 from typing import Any, Optional
 
-from ..security.fedml_attacker import FedMLAttacker
+from ..security.attacker import FedMLAttacker
 from ...core.dp.fedml_differential_privacy import FedMLDifferentialPrivacy
 from ..fhe.fhe_agg import FedMLFHE
 

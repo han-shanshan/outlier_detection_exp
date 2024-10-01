@@ -5,8 +5,8 @@ from typing import List, Tuple
 from fedml.core import Context
 from ..contribution.contribution_assessor_manager import ContributionAssessorManager
 from ..dp.fedml_differential_privacy import FedMLDifferentialPrivacy
-from ..security.fedml_attacker import FedMLAttacker
-from ..security.fedml_defender import FedMLDefender
+from ..security.attacker import FedMLAttacker
+from ..security.defender import FedMLDefender
 from fedml.ml.aggregator.agg_operator import FedMLAggOperator
 from ..fhe.fhe_agg import FedMLFHE
 

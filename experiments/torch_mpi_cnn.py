@@ -1,28 +1,28 @@
 import logging
-import fedml
-from fedml import FedMLRunner
-from fedml.model.cv.resnet import resnet20
+import federated_learning
+from federated_learning import FedMLRunner
+from federated_learning.model.cv.resnet import resnet20
 import wandb
 
 
 
 if __name__ == "__main__":
-    args = fedml.init()
+    args = federated_learning.init()
 
     if args.enable_wandb:
         args.wandb_obj = wandb.init(
-            entity="fedml", project="fedmlSecurity", name="lr_security", config=args
+            entity="federated_learning", project="federated_learningSecurity", name="lr_security", config=args
         )
 
     # init device
-    device = fedml.device.get_device(args)
+    device = federated_learning.device.get_device(args)
 
     # load data
-    dataset, output_dim = fedml.data.load(args)
+    dataset, output_dim = federated_learning.data.load(args)
 
     # load model
-    model = fedml.model.create(args, output_dim)
+    model = federated_learning.model.create(args, output_dim)
 
     # start training
-    fedml_runner = FedMLRunner(args, device, dataset, model)
-    fedml_runner.run()
+    federated_learning_runner = FedMLRunner(args, device, dataset, model)
+    federated_learning_runner.run()

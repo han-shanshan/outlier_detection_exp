@@ -35,12 +35,12 @@ twine upload --repository testpypi dist/*
 
 ### Install test pip
 ```
-pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fedml
+pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple FederatedLearning
 ```
 
 ### Upgrade test pip
 ```
-pip install -U --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple fedml
+pip install -U --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple FederatedLearning
 ```
 
 ### Release

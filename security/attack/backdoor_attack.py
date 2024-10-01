@@ -17,7 +17,7 @@ overview: the attacker can find the set of parameters within the same range (via
 
 Steps:
 (1) Calculate mean and standard deviations of each dimension of parameters of corrupted workers.
-(2) Each malicious worker trains the model with the backdoor. -> it is not implemeted in this code but should be trained with FedML
+(2) Each malicious worker trains the model with the backdoor. -> it is not implemeted in this code but should be trained with FederatedLearning
     Loss = alpha * L_backdoor + (1 - alpha) * l, where l = sum of [(NewParam - OldParam)/max(z * sigma, 1e-5)]^2
 (3) Update malicious parameters to the range {mean +/- z^(max) * std}, where z is the lower and upper bounds for applicable changes around the mean
 
@@ -36,7 +36,7 @@ class BackdoorAttack(BaseAttackMethod):
         self.client_num = client_num
         self.num_std = num_std
         self.backdoor = backdoor_type  #
-        # build backdoor, disable, which should be embedded into FedML training.
+        # build backdoor, disable, which should be embedded into FederatedLearning training.
         if dataset is not None:
             if backdoor_type == "pattern":
                 target = dataset[1]

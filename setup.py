@@ -119,13 +119,13 @@ requirements_extra_deepspeed = [
 setup(
     name="fedml",
     version="0.8.30",
-    author="FedML Team",
+    author="FederatedLearning Team",
     author_email="ch@fedml.ai",
     description="A research and production integrated edge-cloud library for "
                 "federated/distributed machine learning at anywhere at any scale.",
     long_description=io.open(os.path.join("README.md"), "r", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
-    url="https://github.com/FedML-AI/FedML",
+    url="https://github.com/FederatedLearning-AI/FederatedLearning",
     keywords=[
         "distributed machine learning",
         "federated learning",

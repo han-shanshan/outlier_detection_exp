@@ -2,9 +2,9 @@ import logging
 from abc import ABC, abstractmethod
 from typing import Any, Optional
 
-from ..security.attacker import FedMLAttacker
-from ...core.dp.fedml_differential_privacy import FedMLDifferentialPrivacy
-from ..fhe.fhe_agg import FedMLFHE
+from ..security.attacker import FederatedLearningAttacker
+from ...core.dp.FederatedLearning_differential_privacy import FederatedLearningDifferentialPrivacy
+from ..fhe.fhe_agg import FederatedLearningFHE
 
 
 class ClientTrainer(ABC):
@@ -25,9 +25,9 @@ class ClientTrainer(ABC):
         self.rid = 0
         self.template_model_params: Optional[Any] = None
         self.enc_model_params = None
-        FedMLDifferentialPrivacy.get_instance().init(args)
-        FedMLAttacker.get_instance().init(args)
-        FedMLFHE.get_instance().init(args)
+        FederatedLearningDifferentialPrivacy.get_instance().init(args)
+        FederatedLearningAttacker.get_instance().init(args)
+        FederatedLearningFHE.get_instance().init(args)
 
     def set_id(self, trainer_id):
         self.id = trainer_id
@@ -36,9 +36,9 @@ class ClientTrainer(ABC):
         return True
 
     def update_dataset(self, local_train_dataset, local_test_dataset, local_sample_number):
-        if FedMLAttacker.get_instance().is_data_poisoning_attack() and FedMLAttacker.get_instance().is_to_poison_data():
-            self.local_train_dataset = FedMLAttacker.get_instance().poison_data(local_train_dataset)
-            self.local_test_dataset = FedMLAttacker.get_instance().poison_data(local_test_dataset)
+        if FederatedLearningAttacker.get_instance().is_data_poisoning_attack() and FederatedLearningAttacker.get_instance().is_to_poison_data():
+            self.local_train_dataset = FederatedLearningAttacker.get_instance().poison_data(local_train_dataset)
+            self.local_test_dataset = FederatedLearningAttacker.get_instance().poison_data(local_test_dataset)
         else:
             self.local_train_dataset = local_train_dataset
             self.local_test_dataset = local_test_dataset
@@ -59,14 +59,14 @@ class ClientTrainer(ABC):
         self.enc_model_params = enc_model_parameters
 
     def on_before_local_training(self, train_data, device, args):
-        if FedMLFHE.get_instance().is_fhe_enabled():
+        if FederatedLearningFHE.get_instance().is_fhe_enabled():
             if self.rid != 0:
                 if self.template_model_params is None:
                     self.template_model_params = self.get_model_params()
 
                 # get encrypted global params, and decrypt then set params
                 logging.info(" ---- decrypting aggregated model ----")
-                dec_aggregated_model = FedMLFHE.get_instance().fhe_dec(
+                dec_aggregated_model = FederatedLearningFHE.get_instance().fhe_dec(
                     self.template_model_params,
                     self.get_enc_model_params()
                 )
@@ -78,14 +78,14 @@ class ClientTrainer(ABC):
         pass
 
     def on_after_local_training(self, train_data, device, args):
-        if FedMLFHE.get_instance().is_fhe_enabled():
+        if FederatedLearningFHE.get_instance().is_fhe_enabled():
             # encrypt before sending to server
             logging.info(" ---- encrypting client model ----")
-            encrypted_model_params = FedMLFHE.get_instance().fhe_enc('local', self.get_model_params())
+            encrypted_model_params = FederatedLearningFHE.get_instance().fhe_enc('local', self.get_model_params())
             self.set_enc_model_params(encrypted_model_params)
-        elif FedMLDifferentialPrivacy.get_instance().is_local_dp_enabled():
+        elif FederatedLearningDifferentialPrivacy.get_instance().is_local_dp_enabled():
             logging.info("-----add local DP noise ----")
-            model_params_with_dp_noise = FedMLDifferentialPrivacy.get_instance().add_local_noise(
+            model_params_with_dp_noise = FederatedLearningDifferentialPrivacy.get_instance().add_local_noise(
                 self.get_model_params()
             )
             self.set_model_params(model_params_with_dp_noise)

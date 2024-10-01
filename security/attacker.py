@@ -11,15 +11,15 @@ from collections import OrderedDict
 import random
 
 
-class FedMLAttacker:
+class FederatedLearningAttacker:
     _attacker_instance = None
 
     @staticmethod
     def get_instance():
-        if FedMLAttacker._attacker_instance is None:
-            FedMLAttacker._attacker_instance = FedMLAttacker()
+        if FederatedLearningAttacker._attacker_instance is None:
+            FederatedLearningAttacker._attacker_instance = FederatedLearningAttacker()
 
-        return FedMLAttacker._attacker_instance
+        return FederatedLearningAttacker._attacker_instance
 
     def __init__(self):
         self.is_enabled = False
@@ -55,7 +55,7 @@ class FedMLAttacker:
                 MLEngineBackend.ml_engine_backend_mxnet,
             ]:
                 logging.info(
-                    "FedMLAttacker is not supported for the machine learning engine: %s. "
+                    "FederatedLearningAttacker is not supported for the machine learning engine: %s. "
                     "We will support more engines in the future iteration."
                     % args.ml_engine
                 )

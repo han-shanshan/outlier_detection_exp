@@ -37,15 +37,15 @@ from security.constants import (
 )
 
 
-class FedMLDefender:
+class FederatedLearningDefender:
     _defender_instance = None
 
     @staticmethod
     def get_instance():
-        if FedMLDefender._defender_instance is None:
-            FedMLDefender._defender_instance = FedMLDefender()
+        if FederatedLearningDefender._defender_instance is None:
+            FederatedLearningDefender._defender_instance = FederatedLearningDefender()
 
-        return FedMLDefender._defender_instance
+        return FederatedLearningDefender._defender_instance
 
     def __init__(self):
         self.is_enabled = False
@@ -108,7 +108,7 @@ class FedMLDefender:
             ]
         ):
             logging.info(
-                "FedMLDefender is not supported for the machine learning engine: %s. "
+                "FederatedLearningDefender is not supported for the machine learning engine: %s. "
                 "We will support more engines in the future iteration." % args.ml_engine
             )
             self.is_enabled = False

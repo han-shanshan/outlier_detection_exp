@@ -1,6 +1,6 @@
 import logging
 import federated_learning
-from federated_learning import FedMLRunner
+from federated_learning import FederatedLearningRunner
 from federated_learning.model.cv.resnet import resnet20
 import wandb
 
@@ -24,5 +24,5 @@ if __name__ == "__main__":
     model = federated_learning.model.create(args, output_dim)
 
     # start training
-    federated_learning_runner = FedMLRunner(args, device, dataset, model)
+    federated_learning_runner = FederatedLearningRunner(args, device, dataset, model)
     federated_learning_runner.run()

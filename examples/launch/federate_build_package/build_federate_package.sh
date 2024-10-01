@@ -1,1 +1,0 @@
-fedml federate build federated_job.yaml

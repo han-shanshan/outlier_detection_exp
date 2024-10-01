@@ -1,5 +1,0 @@
-*.pyc
-
-/mlops/dist-packages/
-
-fedml-train-packages
